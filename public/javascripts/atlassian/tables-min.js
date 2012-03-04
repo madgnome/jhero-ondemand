@@ -1,0 +1,1 @@
+(function(){AJS.tables=AJS.tables||{};AJS.tables.rowStriping=function(){var C=AJS.$("table.aui-zebra > tbody");for(var A=0,B=C.length;A<B;A++){AJS.$(C[A]).find("> tr").filter(":odd").addClass("aui-zebra")}};AJS.$(AJS.tables.rowStriping)})();

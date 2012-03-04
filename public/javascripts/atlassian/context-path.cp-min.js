@@ -1,0 +1,1 @@
+AJS=AJS||{};(function(){var A="%CONTEXT_PATH%";A=A.indexOf("%_CONTEXT_PATH")==0?false:A;AJS.contextPath=function(){var B=null;var D=[A,window.contextPath,window.Confluence&&Confluence.getContextPath(),window.BAMBOO&&BAMBOO.contextPath,window.FECRU&&FECRU.pageContext];for(var C=0;C<D.length;C++){if(typeof D[C]==="string"){B=D[C];break}}return B}})();

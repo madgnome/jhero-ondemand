@@ -1,0 +1,1 @@
+jQuery.ui.draggable.prototype._mouseCapture=(function(A){return function(C){var B=A.call(this,C);if(B&&jQuery.browser.msie){C.stopPropagation()}return B}})(jQuery.ui.draggable.prototype._mouseCapture);

@@ -1,0 +1,25 @@
+<remote-app key="jirahero-ondemand" name="JIRA Hero OnDemand" version="1" icon-url="http://example.com/favicon.ico"
+            display-url="http://localhost:9000">
+  <vendor name="Madgnome" url="http://localhost:9000" />
+
+  <description>
+    JIRA Hero plugin for OnDemand instances
+  </description>
+
+  <oauth>
+    <public-key>
+      {{publicKey}}
+    </public-key>
+  </oauth>
+
+  <permissions>
+    <permission scope="read_users_and_groups" />
+    <permission scope="browse_projects" />
+  </permissions>
+
+  <profile-page key="remoteAppProfile" name="Achievements" url="/userProfile" />
+
+  <web-hook event="issue_created" url="/webhooks/issue_created" />
+  <web-hook event="issue_created" url="/webhooks/issue_closed" />
+
+</remote-app>
