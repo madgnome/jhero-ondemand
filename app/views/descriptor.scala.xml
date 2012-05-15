@@ -21,7 +21,10 @@
 
   <profile-page key="remoteAppProfile" name="Achievements" url="/userProfile" />
 
+  <web-hook event="remote_app_started" url="/webhooks/remote_app_started" />
+
   <web-hook event="issue_created" url="/webhooks/issue_created" />
-  <web-hook event="issue_created" url="/webhooks/issue_closed" />
+  <web-hook event="issue_resolved" url="/webhooks/issue_resolved" />
+  <web-hook event="issue_closed" url="/webhooks/issue_closed" />
 
 </remote-app>

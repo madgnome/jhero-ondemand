@@ -3,7 +3,6 @@
 # ~~~~
 
 # Remote app definition file
-GET     /atlassian-remote-app.xml   controllers.Assets.at(path="/public", file="atlassian-remote-app.xml")
 GET     /register                   controllers.Application.register
 
 # Home page
