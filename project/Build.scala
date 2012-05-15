@@ -15,7 +15,8 @@ object ApplicationBuild extends Build {
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
       // Add your own project settings here
       resolvers += ("Local Maven Repository" at "file:///"+Path.userHome.absolutePath+"/.m2/repository"),
-      resolvers += ("Atlassian" at "https://maven.atlassian.com/content/repositories/atlassian-public")
+      resolvers += ("Atlassian Repository" at "https://maven.atlassian.com/content/repositories/atlassian-public"),
+      resolvers += ("OAuth Repository" at "http://oauth.googlecode.com/svn/code/maven/")
     )
 
 }
