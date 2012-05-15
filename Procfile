@@ -1,1 +1,1 @@
-web: target/start -Dhttp.port=${PORT} -DapplyEvolutions.default=true -Ddb.default.driver=org.postgresql.Driver -Ddb.default.url=jdbc:$JUSTONEDB_DBI_URL ${JAVA_OPTS}
+web: target/start -Dhttp.port=${PORT} -DapplyEvolutions.default=true -Ddb.default.driver=org.postgresql.Driver -Ddb.default.url=jdbc:postgresql://77.92.68.105:10301/miliywaplwxrsbzd -Ddb.default.user=tktvfel9rt0p885q -Ddb.default.password=row8tfkca0arkzb78fnph4l1f1zipj6o ${JAVA_OPTS}
