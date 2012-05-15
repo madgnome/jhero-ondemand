@@ -8,7 +8,8 @@ object ApplicationBuild extends Build {
     val appVersion      = "1.0-SNAPSHOT"
 
     val appDependencies = Seq(
-      "com.atlassian.labs" % "remoteapp-apputils" % "0.4.99-SNAPSHOT"
+      "com.atlassian.labs" % "remoteapp-apputils" % "0.4.99-SNAPSHOT",
+      "postgresql" % "postgresql" % "9.1-901.jdbc4"
     )
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
