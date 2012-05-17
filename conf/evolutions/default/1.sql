@@ -1,32 +1,26 @@
 # Users schema
  
 # --- !Ups
- 
-CREATE TABLE `consumers`(
-  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `app_key` VARCHAR(255) NOT NULL,
-  `public_key` VARCHAR(255) NOT NULL,
-  `base_url` VARCHAR(1024) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `consumers_key` (`app_key`)
+
+CREATE TABLE consumers (
+  id SERIAL PRIMARY KEY,
+  app_key VARCHAR(255) NOT NULL UNIQUE,
+  public_key VARCHAR(255) NOT NULL,
+  base_url VARCHAR(1024) NOT NULL
 );
 
-CREATE TABLE `users` (
-  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `consumers_id` INT(10) UNSIGNED NOT NULL,
-  `username` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_consumers_id_username` (`consumers_id`, `username`),
-  CONSTRAINT `users_ibfk_1` FOREIGN KEY (`consumers_id`) REFERENCES `consumers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  consumers_id INTEGER NOT NULL REFERENCES consumers,
+  username VARCHAR(255) NOT NULL,
+  UNIQUE (consumers_id, username)
 );
 
-CREATE TABLE `statistics` (
-  `users_id` INT(10) UNSIGNED NOT NULL,
-  `created` INT(6) UNSIGNED DEFAULT 0,
-  `resolved` INT(6) UNSIGNED DEFAULT 0,
-  `closed` INT(6) UNSIGNED DEFAULT 0,
-  PRIMARY KEY (`users_id`),
-  CONSTRAINT `statistics_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+CREATE TABLE statistics (
+  users_id INTEGER NOT NULL PRIMARY KEY REFERENCES users,
+  created INTEGER DEFAULT 0,
+  resolved INTEGER DEFAULT 0,
+  closed INTEGER DEFAULT 0
 );
 
 # --- !Downs
