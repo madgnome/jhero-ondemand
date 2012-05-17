@@ -1,1 +1,1 @@
-web: target/start -Dhttp.port=${PORT} -DapplyEvolutions.default=true -Ddb.default.driver=org.postgresql.Driver -Ddb.default.url=${DB_JDBC_URL} -Ddb.default.user=${DB_USER} -Ddb.default.password=${DB_PASSWORD} ${JAVA_OPTS}
+web: target/start -Dhttp.port=${PORT} -DapplyEvolutions.default=true -Ddb.default.driver=${DB_DRIVER} -Ddb.default.url=${DB_JDBC_URL} -Ddb.default.user=${DB_USER} -Ddb.default.password=${DB_PASSWORD} ${JAVA_OPTS}
