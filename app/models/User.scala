@@ -16,6 +16,8 @@ object User {
     }
   }
 
+  var onCreate = List[User => Unit]()
+
   def getById(id: Long)  = DB.withConnection { implicit c =>
     SQL("SELECT * FROM users WHERE id = {id}").on(
       "id" -> id
@@ -34,14 +36,24 @@ object User {
       "consumersId" -> consumersId,
       "username" -> username
     ).executeInsert() match {
-      case Some(id: Long) => getById(id)
+      case Some(id: Long) => {
+        getById(id) match {
+          case None => None
+          case Some(u) => {
+            onCreate.foreach(f => f(u))
+            Some(u)
+          };
+        }
+      }
       case None => None
     }
   }
 
   def getOrCreate(consumer: Consumer, username: String) = DB.withConnection { implicit c =>
     getByUsername(consumer, username) match {
-      case None => create(consumer.id, username).get
+      case None => {
+        create(consumer.id, username).get
+      }
       case Some(u) => u
     }
   }

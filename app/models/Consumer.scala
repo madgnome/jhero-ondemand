@@ -22,19 +22,26 @@ object Consumer {
     SQL("SELECT * FROM consumers").as(consumer*)
   }
 
-  def getByKey(key: String)  = DB.withConnection { implicit c =>
+  def getById(id: Long) = DB.withConnection { implicit c =>
+    SQL("SELECT * FROM consumers WHERE id = {id}").on(
+      "id" -> id
+    ).as(consumer.singleOpt)
+  }
+
+  def getByKey(key: String) = DB.withConnection { implicit c =>
     SQL("SELECT * FROM consumers WHERE app_key = {key}").on(
       "key" -> key
     ).as(consumer.singleOpt)
   }
 
-  def create(key: String, publicKey: String, baseUrl: String) {
-    DB.withConnection { implicit c =>
-      SQL("INSERT INTO consumers (app_key, public_key, base_url) VALUES ({key}, {publicKey}, {baseUrl})").on(
-        "key" -> key,
-        "publicKey" -> publicKey,
-        "baseUrl" -> baseUrl
-      ).executeUpdate()
+  def create(key: String, publicKey: String, baseUrl: String) = DB.withConnection { implicit c =>
+    SQL("INSERT INTO consumers (app_key, public_key, base_url) VALUES ({key}, {publicKey}, {baseUrl})").on(
+      "key" -> key,
+      "publicKey" -> publicKey,
+      "baseUrl" -> baseUrl
+    ).executeInsert() match {
+      case Some(id: Long) => getById(id)
+      case None => None
     }
   }
 
@@ -43,6 +50,13 @@ object Consumer {
       SQL("DELETE FROM consumers WHERE id = {id}").on(
         "id" -> id
       ).executeUpdate()
+    }
+  }
+
+  def getOrCreate(key: String, publicKey: String, baseUrl: String) = DB.withConnection { implicit c =>
+    getByKey(key) match {
+      case None => create(key, publicKey, baseUrl).get
+      case Some(u) => u
     }
   }
 }

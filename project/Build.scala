@@ -9,6 +9,9 @@ object ApplicationBuild extends Build {
 
     val appDependencies = Seq(
       "com.atlassian.labs" % "remoteapp-apputils" % "0.4.4",
+      "net.oauth.core" % "oauth" % "20090617",
+      "net.oauth.core" % "oauth-consumer" % "20090617",
+      "net.oauth.core" % "oauth-provider" % "20090531",
       "postgresql" % "postgresql" % "9.1-901.jdbc4"
     )
 

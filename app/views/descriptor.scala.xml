@@ -1,6 +1,6 @@
-@(publicKey: String)
+@(localKey:String , publicKey: String)
 
-<remote-app key="jirahero-ondemand" name="JIRA Hero OnDemand" version="1" icon-url="http://example.com/favicon.ico"
+<remote-app key="@localKey" name="JIRA Hero OnDemand" version="1" icon-url="http://example.com/favicon.ico"
             display-url="http://localhost:9000">
   <vendor name="Madgnome" url="http://localhost:9000" />
 

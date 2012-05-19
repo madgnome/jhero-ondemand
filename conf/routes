@@ -11,8 +11,7 @@ GET     /                           controllers.Application.index
 GET     /userProfile                controllers.Application.userProfile
 
 # Web hooks
-GET     /webhooks                   controllers.Application.events
-POST    /webhooks/:event            controllers.Application.newEvent(event: String)
+POST    /webhooks/:event            controllers.Events.newEvent(event: String)
 
 
 # Map static resources from the /public folder to the /assets URL path
